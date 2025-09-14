@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khumtech - Software Development, Repairs & Tech Solutions You Can Trust</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#1e40af',
+                        'secondary': '#1f2937',
+                        'accent': '#3b82f6'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .hero-gradient { background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); }
+        .service-card:hover { transform: translateY(-5px); transition: all 0.3s ease; }
+        .floating-chat { animation: pulse 2s infinite; }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-up { animation: fadeInUp 0.8s ease-out; }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+    <!-- WhatsApp Floating Button -->
+    <div id="whatsapp-float" class="fixed bottom-6 right-6 z-50">
+        <a href="https://wa.me/27123456789" target="_blank" class="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg floating-chat transition-colors duration-300">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+            </svg>
+        </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-17">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <img src="media/Gemini_Generated_Image_rzvvcnrzvvcnrzvv.png" class="h-20 w-21">
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#home" onclick="showPage('home')" class="nav-link text-secondary hover:text-primary px-3 py-2 rounded-md text-sm font-medium cursor-pointer transition-colors">Home</a>
+                        <a href="#services" onclick="showPage('services')" class="nav-link text-secondary hover:text-primary px-3 py-2 rounded-md text-sm font-medium cursor-pointer transition-colors">Services</a>
+                        <a href="#about" onclick="showPage('about')" class="nav-link text-secondary hover:text-primary px-3 py-2 rounded-md text-sm font-medium cursor-pointer transition-colors">About</a>
+                        <a href="#blog" onclick="showPage('blog')" class="nav-link text-secondary hover:text-primary px-3 py-2 rounded-md text-sm font-medium cursor-pointer transition-colors">Blog</a>
+                        <a href="#contact" onclick="showPage('contact')" class="nav-link text-secondary hover:text-primary px-3 py-2 rounded-md text-sm font-medium cursor-pointer transition-colors">Contact</a>
+                    </div>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-secondary hover:text-primary p-2">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-50">
+                <a href="#home" onclick="showPage('home'); toggleMobileMenu()" class="block text-secondary hover:text-primary px-3 py-2 rounded-md text-base font-medium cursor-pointer">Home</a>
+                <a href="#services" onclick="showPage('services'); toggleMobileMenu()" class="block text-secondary hover:text-primary px-3 py-2 rounded-md text-base font-medium cursor-pointer">Services</a>
+                <a href="#about" onclick="showPage('about'); toggleMobileMenu()" class="block text-secondary hover:text-primary px-3 py-2 rounded-md text-base font-medium cursor-pointer">About</a>
+                <a href="#blog" onclick="showPage('blog'); toggleMobileMenu()" class="block text-secondary hover:text-primary px-3 py-2 rounded-md text-base font-medium cursor-pointer">Blog</a>
+                <a href="#contact" onclick="showPage('contact'); toggleMobileMenu()" class="block text-secondary hover:text-primary px-3 py-2 rounded-md text-base font-medium cursor-pointer">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page">
+        <!-- Hero Section -->
+        <section class="hero-gradient text-white py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center fade-in-up">
+                    <h1 class="text-5xl md:text-6xl font-bold mb-6">Khumtech</h1>
+                    <p class="text-xl md:text-2xl mb-8 text-blue-100">Software Development, Repairs & Tech Solutions You Can Trust</p>
+                    <div class="space-x-4">
+                        <button onclick="showPage('contact')" class="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300">Request a Quote</button>
+                        <button onclick="showPage('contact')" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary transition-colors duration-300">Contact Us</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Overview -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center text-secondary mb-12">Our Services</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="service-card bg-white p-8 rounded-lg shadow-lg text-center">
+                        <div class="bg-primary text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12l-5.657 5.657-1.414-1.414L21.172 12l-4.243-4.243 1.414-1.414L24 12zM2.828 12l4.243 4.243-1.414 1.414L0 12l5.657-5.657 1.414 1.414L2.828 12zm6.96 9H7.66l6.552-18h2.128L9.788 21z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-4 text-secondary">Software Development</h3>
+                        <p class="text-gray-600 mb-6">Custom web apps, mobile applications, and enterprise solutions tailored to your business needs.</p>
+                        <button onclick="showPage('services')" class="text-primary font-semibold hover:underline">Learn More →</button>
+                    </div>
+                    <div class="service-card bg-white p-8 rounded-lg shadow-lg text-center">
+                        <div class="bg-primary text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20 3H4c-1.103 0-2 .897-2 2v11c0 1.103.897 2 2 2h7v2H8v2h8v-2h-3v-2h7c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zM4 14V5h16l.002 9H4z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-4 text-secondary">Device Repairs</h3>
+                        <p class="text-gray-600 mb-6">Professional laptop and phone repair services with warranty and quick turnaround times.</p>
+                        <button onclick="showPage('services')" class="text-primary font-semibold hover:underline">Learn More →</button>
+                    </div>
+                    <div class="service-card bg-white p-8 rounded-lg shadow-lg text-center">
+                        <div class="bg-primary text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M7 4V2C7 1.45 7.45 1 8 1H16C16.55 1 17 1.45 17 2V4H20V6H4V4H7ZM8 3V4H16V3H8ZM19 8V21C19 21.55 18.55 22 18 22H6C5.45 22 5 21.55 5 21V8H7V20H17V8H19ZM9 10V18H11V10H9ZM13 10V18H15V10H13Z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-4 text-secondary">Device Sales</h3>
+                        <p class="text-gray-600 mb-6">Quality laptops and phones available in-store with expert consultation and support.</p>
+                        <button onclick="showPage('services')" class="text-primary font-semibold hover:underline">Learn More →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us -->
+        <section class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center text-secondary mb-12">Why Choose Khumtech?</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Trusted Expertise</h3>
+                        <p class="text-gray-600">Years of experience in software development and device repairs</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Quality Guarantee</h3>
+                        <p class="text-gray-600">All our work comes with warranty and quality assurance</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM13 17h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Fast Response</h3>
+                        <p class="text-gray-600">Quick turnaround times for repairs and project delivery</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">24/7 Support</h3>
+                        <p class="text-gray-600">Always available to help with your tech needs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center text-secondary mb-12">What Our Clients Say</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"Excellent software development services. They delivered our project on time and exceeded expectations."</p>
+                        <p class="font-semibold">- Precious Phiri, CEO Pelin's</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"Fast and professional laptop repair service. My device was fixed within 24 hours!"</p>
+                        <p class="font-semibold">- Lwazi Malopi, Small Business Owner</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">"Great selection of laptops and excellent customer service. Highly recommended!"</p>
+                        <p class="font-semibold">- Sydney Khumalo, Freelancer</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Client Logos -->
+        <section class="py-12 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h3 class="text-2xl font-semibold text-center text-secondary mb-8">Trusted by Leading Companies</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center opacity-60">
+                    <div class="bg-gray-200 h-16 w-32 rounded flex items-center justify-center text-gray-500 font-semibold"><img src="media/logo.png"></div>
+                    <div class="bg-gray-200 h-16 w-32 rounded flex items-center justify-center text-gray-500 font-semibold">Client 2</div>
+                    <div class="bg-gray-200 h-16 w-32 rounded flex items-center justify-center text-gray-500 font-semibold">Client 3</div>
+                    <div class="bg-gray-200 h-16 w-32 rounded flex items-center justify-center text-gray-500 font-semibold">Client 4</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Services Page -->
+    <div id="services" class="page hidden">
+        <div class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-4xl font-bold text-center text-secondary mb-12">Our Services</h1>
+                
+                <!-- Software Development -->
+                <section class="mb-16">
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <div class="flex items-center mb-6">
+                            <div class="bg-primary text-white w-16 h-16 rounded-full flex items-center justify-center mr-6">
+                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M24 12l-5.657 5.657-1.414-1.414L21.172 12l-4.243-4.243 1.414-1.414L24 12zM2.828 12l4.243 4.243-1.414 1.414L0 12l5.657-5.657 1.414 1.414L2.828 12zm6.96 9H7.66l6.552-18h2.128L9.788 21z"/>
+                                </svg>
+                            </div>
+                            <h2 class="text-3xl font-bold text-secondary">Software Development</h2>
+                        </div>
+                        <p class="text-gray-600 text-lg mb-8">Custom software solutions designed to solve your unique business challenges and drive growth.</p>
+                        
+                        <div class="grid md:grid-cols-3 gap-6 mb-8">
+                            <div class="border border-gray-200 rounded-lg p-6">
+                                <h3 class="text-xl font-semibold mb-3 text-secondary">Web Applications</h3>
+                                <p class="text-gray-600">Native and cross-platform mobile applications for iOS and Android devices.</p>
+                            </div>
+                            <div class="border border-gray-200 rounded-lg p-6">
+                                <h3 class="text-xl font-semibold mb-3 text-secondary">Enterprise Solutions</h3>
+                                <p class="text-gray-600">Large-scale systems and integrations for enterprise-level operations.</p>
+                            </div>
+                        </div>
+                        
+                        <button onclick="showQuoteForm('software')" class="bg-primary text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">Request Software Quote</button>
+                    </div>
+                </section>
+
+                <!-- Device Repairs -->
+                <section class="mb-16">
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <div class="flex items-center mb-6">
+                            <div class="bg-primary text-white w-16 h-16 rounded-full flex items-center justify-center mr-6">
+                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M20 3H4c-1.103 0-2 .897-2 2v11c0 1.103.897 2 2 2h7v2H8v2h8v-2h-3v-2h7c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zM4 14V5h16l.002 9H4z"/>
+                                </svg>
+                            </div>
+                            <h2 class="text-3xl font-bold text-secondary">Laptop & Phone Repairs</h2>
+                        </div>
+                        <p class="text-gray-600 text-lg mb-8">Professional repair services for all major laptop and smartphone brands with genuine parts and warranty.</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-8 mb-8">
+                            <div>
+                                <h3 class="text-2xl font-semibold mb-4 text-secondary">Laptop Repairs</h3>
+                                <ul class="space-y-2">
+                                    <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Screen replacement</li>
+                                    <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Keyboard repairs</li>
+                                    <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Battery replacement</li>
+                                    <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Hardware diagnostics</li>
+                                    <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Motherboard repairs</li>
+                                    <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Software troubleshooting</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-semibold mb-4 text-secondary">Phone Repairs</h3>
+                                <ul class="space-y-2">
+                                    <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Screen replacement</li>
+                                    <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Battery replacement</li>
+                                    <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Camera repairs</li>
+                                    <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Water damage recovery</li>
+                                    <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Charging port repairs</li>
+                                    <li class="flex items-center"><span class="text-green-500 mr-2">✓</span> Software restoration</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-blue-50 border-l-4 border-primary p-4 mb-6">
+                            <h3 class="font-semibold text-primary mb-2">Service Warranty</h3>
+                            <p class="text-gray-700">All repairs come with a 90-day warranty on parts and labor. We use only genuine or high-quality compatible parts.</p>
+                        </div>
+                        
+                        <button onclick="showBookingForm()" class="bg-primary text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">Book Repair Service</button>
+                    </div>
+                </section>
+
+                <!-- Device Sales -->
+                <section class="mb-16">
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <div class="flex items-center mb-6">
+                            <div class="bg-primary text-white w-16 h-16 rounded-full flex items-center justify-center mr-6">
+                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M7 4V2C7 1.45 7.45 1 8 1H16C16.55 1 17 1.45 17 2V4H20V6H4V4H7ZM8 3V4H16V3H8ZM19 8V21C19 21.55 18.55 22 18 22H6C5.45 22 5 21.55 5 21V8H7V20H17V8H19ZM9 10V18H11V10H9ZM13 10V18H15V10H13Z"/>
+                                </svg>
+                            </div>
+                            <h2 class="text-3xl font-bold text-secondary">Laptop & Phone Sales</h2>
+                        </div>
+                        <p class="text-gray-600 text-lg mb-8">Quality devices at competitive prices with expert consultation and after-sales support.</p>
+                        
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                            <div class="border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDIwMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxMjAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzllYTNiMCI+TGFwdG9wPC90ZXh0Pjwvc3ZnPg==" alt="Laptop" class="w-full h-32 object-cover rounded mb-4">
+                                <h3 class="text-xl font-semibold mb-2">Business Laptops</h3>
+                                <p class="text-gray-600 mb-4">High-performance laptops for professionals and businesses.</p>
+                                <p class="text-2xl font-bold text-primary mb-4">From R8,999</p>
+                                <button onclick="showProductInterest('business-laptops')" class="w-full bg-primary text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors">Request More Info</button>
+                            </div>
+                            
+                            <div class="border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDIwMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxMjAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzllYTNiMCI+R2FtaW5nPC90ZXh0Pjwvc3ZnPg==" alt="Gaming Laptop" class="w-full h-32 object-cover rounded mb-4">
+                                <h3 class="text-xl font-semibold mb-2">Gaming Laptops</h3>
+                                <p class="text-gray-600 mb-4">Powerful gaming laptops with latest graphics cards.</p>
+                                <p class="text-2xl font-bold text-primary mb-4">From R15,999</p>
+                                <button onclick="showProductInterest('gaming-laptops')" class="w-full bg-primary text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors">Request More Info</button>
+                            </div>
+                            
+                            <div class="border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDIwMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxMjAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzllYTNiMCI+U21hcnRwaG9uZTwvdGV4dD48L3N2Zz4=" alt="Smartphone" class="w-full h-32 object-cover rounded mb-4">
+                                <h3 class="text-xl font-semibold mb-2">Smartphones</h3>
+                                <p class="text-gray-600 mb-4">Latest smartphones from top brands with warranty.</p>
+                                <p class="text-2xl font-bold text-primary mb-4">From R2,999</p>
+                                <button onclick="showProductInterest('smartphones')" class="w-full bg-primary text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors">Request More Info</button>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-green-50 border-l-4 border-green-400 p-4">
+                            <h3 class="font-semibold text-green-700 mb-2">In-Store Consultation</h3>
+                            <p class="text-green-600">Visit our showroom for hands-on experience and expert advice on choosing the right device for your needs.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page hidden">
+        <div class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-4xl font-bold text-center text-secondary mb-12">About Khumtech</h1>
+                
+                <!-- Company Story -->
+                <section class="mb-16">
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <h2 class="text-3xl font-bold mb-6 text-secondary">Our Story</h2>
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <div>
+                                <p class="text-gray-600 text-lg mb-4">Founded in 2023, Khumtech started as a small tech repair shop with a simple mission: to provide reliable, professional technology services to our community. What began as a passion for fixing broken devices has grown into a comprehensive technology solutions provider.</p>
+                                <p class="text-gray-600 text-lg mb-4">Over the years, we've expanded our services to include custom software development and device sales, always maintaining our commitment to quality, reliability, and customer satisfaction.</p>
+                                <p class="text-gray-600 text-lg">Today, we're proud to serve hundreds of satisfied customers, from individual consumers to large enterprises, helping them leverage technology to achieve their goals.</p>
+                            </div>
+                            <div class="text-center">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzllYTNiMCIgZm9udC1zaXplPSIyNCI+T3VyIFRlYW08L3RleHQ+PC9zdmc+" alt="Our Team" class="rounded-lg">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Mission & Vision -->
+                <section class="mb-16">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-white rounded-lg shadow-lg p-8">
+                            <div class="text-center mb-6">
+                                <div class="bg-primary text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                    </svg>
+                                </div>
+                                <h2 class="text-2xl font-bold text-secondary">Our Mission</h2>
+                            </div>
+                            <p class="text-gray-600 text-center">To empower individuals and businesses with reliable technology solutions that enhance productivity, creativity, and connectivity. We strive to be the trusted partner for all your tech needs.</p>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg shadow-lg p-8">
+                            <div class="text-center mb-6">
+                                <div class="bg-primary text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                    </svg>
+                                </div>
+                                <h2 class="text-2xl font-bold text-secondary">Our Vision</h2>
+                            </div>
+                            <p class="text-gray-600 text-center">To become South Africa's leading technology service provider, known for innovation, excellence, and customer-centric solutions that drive digital transformation across all sectors.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Team & Skills -->
+                <section class="mb-16">
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <h2 class="text-3xl font-bold mb-8 text-center text-secondary">Our Team & Expertise</h2>
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <div class="text-center">
+                                <div class="bg-blue-100 w-24 h-24 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                    <svg class="w-12 h-12 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M24 12l-5.657 5.657-1.414-1.414L21.172 12l-4.243-4.243 1.414-1.414L24 12zM2.828 12l4.243 4.243-1.414 1.414L0 12l5.657-5.657 1.414 1.414L2.828 12zm6.96 9H7.66l6.552-18h2.128L9.788 21z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-2">Software Development Team</h3>
+                                <p class="text-gray-600">Expert developers specializing in web, mobile, and enterprise applications using cutting-edge technologies.</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div class="bg-blue-100 w-24 h-24 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                    <svg class="w-12 h-12 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.5 17.5L3.5 12l1.42-1.42L10 15.66l8.08-8.08L19.5 9 10.5 19.5z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-2">Technical Support Team</h3>
+                                <p class="text-gray-600">Certified technicians with years of experience in hardware repairs and diagnostics for all device types.</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div class="bg-blue-100 w-24 h-24 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                    <svg class="w-12 h-12 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-2">Customer Success Team</h3>
+                                <p class="text-gray-600">Dedicated professionals focused on ensuring customer satisfaction and providing ongoing support.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Certifications -->
+                <section>
+                  
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog Page -->
+    <div id="blog" class="page hidden">
+        <div class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-4xl font-bold text-center text-secondary mb-12">Tech Tips & Insights</h1>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Blog Post 1 -->
+                    <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDQwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzllYTNiMCI+QmxvZyBJbWFnZTwvdGV4dD48L3N2Zz4=" alt="Blog post" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="text-sm text-gray-500 mb-2">September 8, 2025</div>
+                            <h2 class="text-xl font-semibold mb-3 text-secondary">Choosing the Right Laptop for Your Business</h2>
+                            <p class="text-gray-600 mb-4">A comprehensive guide to selecting the perfect laptop that matches your business requirements and budget...</p>
+                            <a href="#" class="text-primary font-semibold hover:underline">Read More →</a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 3 -->
+                    <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDQwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzllYTNiMCI+QmxvZyBJbWFnZTwvdGV4dD48L3N2Zz4=" alt="Blog post" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="text-sm text-gray-500 mb-2">September 5, 2025</div>
+                            <h2 class="text-xl font-semibold mb-3 text-secondary">Smartphone Battery Life: Tips to Extend Usage</h2>
+                            <p class="text-gray-600 mb-4">Simple strategies to maximize your phone's battery life and know when it's time for a replacement...</p>
+                            <a href="#" class="text-primary font-semibold hover:underline">Read More →</a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 4 -->
+                    <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDQwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzllYTNiMCI+QmxvZyBJbWFnZTwvdGV4dD48L3N2Zz4=" alt="Blog post" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="text-sm text-gray-500 mb-2">September 3, 2025</div>
+                            <h2 class="text-xl font-semibold mb-3 text-secondary">Web Development Trends for 2025</h2>
+                            <p class="text-gray-600 mb-4">Stay ahead with the latest web development technologies and frameworks shaping the digital landscape...</p>
+                            <a href="#" class="text-primary font-semibold hover:underline">Read More →</a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 5 -->
+                    <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDQwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzllYTNiMCI+QmxvZyBJbWFnZTwvdGV4dD48L3N2Zz4=" alt="Blog post" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="text-sm text-gray-500 mb-2">August 30, 2025</div>
+                            <h2 class="text-xl font-semibold mb-3 text-secondary">Data Backup: Protecting Your Digital Assets</h2>
+                            <p class="text-gray-600 mb-4">Essential strategies for backing up your important data and recovering from unexpected failures...</p>
+                            <a href="#" class="text-primary font-semibold hover:underline">Read More →</a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 6 -->
+                    <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDQwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNmM2Y0ZjYiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzllYTNiMCI+QmxvZyBJbWFnZTwvdGV4dD48L3N2Zz4=" alt="Blog post" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="text-sm text-gray-500 mb-2">August 28, 2025</div>
+                            <h2 class="text-xl font-semibold mb-3 text-secondary">Mobile App Development: Native vs Cross-Platform</h2>
+                            <p class="text-gray-600 mb-4">Understanding the pros and cons of different mobile development approaches for your next project...</p>
+                            <a href="#" class="text-primary font-semibold hover:underline">Read More →</a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Newsletter Signup -->
+                <section class="mt-16 bg-primary text-white rounded-lg p-8 text-center">
+                    <h2 class="text-3xl font-bold mb-4">Stay Updated</h2>
+                    <p class="text-blue-100 mb-6">Subscribe to our newsletter for the latest tech tips and company updates.</p>
+                    <form onsubmit="subscribeNewsletter(event)" class="max-w-md mx-auto flex gap-4">
+                        <input type="email" placeholder="Enter your email" required class="flex-1 px-4 py-2 rounded-lg text-gray-800">
+                        <button type="submit" class="bg-white text-primary px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors">Subscribe</button>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page hidden">
+        <div class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-4xl font-bold text-center text-secondary mb-12">Contact Us</h1>
+                
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <!-- Contact Form -->
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <h2 class="text-2xl font-semibold mb-6 text-secondary">Get in Touch</h2>
+                        <form id="contactForm"
+      action="https://formspree.io/f/mdklvnzl"
+      method="POST"
+      onsubmit="submitContactForm(event)"
+      class="space-y-6">
+
+  <!-- optional subject field for emails -->
+  <input type="hidden" name="_subject" value="New contact form submission - Khumtech">
+
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-2">Name *</label>
+    <input type="text" name="name" required
+           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+    <input type="email" name="email" required
+           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+    <input type="tel" name="phone"
+           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-2">Service Type</label>
+    <select name="service" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+      <option value="">Select a service</option>
+      <option value="software">Software Development</option>
+      <option value="repair">Device Repair</option>
+      <option value="sales">Device Sales</option>
+      <option value="consultation">Consultation</option>
+      <option value="other">Other</option>
+    </select>
+  </div>
+
+  <div>
+    <label class="block text-sm font-medium text-gray-700 mb-2">Message *</label>
+    <textarea name="message" rows="5" required
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+              placeholder="Tell us about your project or repair needs..."></textarea>
+  </div>
+
+  <!-- Status message (for accessibility, use aria-live) -->
+  <div id="contact-form-status" class="text-sm" aria-live="polite"></div>
+
+  <button id="contactFormSubmit" type="submit"
+          class="w-full bg-primary text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
+    Send Message
+  </button>
+</form>
+                    </div>
+                    
+                    <!-- Contact Information -->
+                    <div class="space-y-8">
+                        <!-- Contact Details -->
+                        <div class="bg-white rounded-lg shadow-lg p-8">
+                            <h2 class="text-2xl font-semibold mb-6 text-secondary">Contact Information</h2>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="bg-primary text-white p-3 rounded-full mr-4">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold text-secondary">Phone</h3>
+                                        <p class="text-gray-600">
+                                            <a href="tel:+27725479023" class="hover:text-blue-500">+27 72 547 9023</a>
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-primary text-white p-3 rounded-full mr-4">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold text-secondary">Email</h3>
+                                        <p class="text-gray-600">
+                                            <a href="mailto:khumtech951@gmail.com" class="hover:text-blue-500">khumtech951@gmail.com</a>
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                               
+                            </div>
+                        </div>
+                        
+                        <!-- Business Hours -->
+                        <div class="bg-white rounded-lg shadow-lg p-8">
+                            <h2 class="text-2xl font-semibold mb-6 text-secondary">Business Hours</h2>
+                            
+                            <div class="space-y-2">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Monday - Friday:</span>
+                                    <span class="font-semibold">8:00 AM - 6:00 PM</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Saturday:</span>
+                                    <span class="font-semibold">9:00 AM - 4:00 PM</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Sunday:</span>
+                                    <span class="font-semibold">Closed</span>
+                                </div>
+                                <div class="flex justify-between border-t pt-2 mt-4">
+                                    <span class="text-gray-600">Emergency Support:</span>
+                                    <span class="font-semibold text-primary">24/7</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- WhatsApp Contact -->
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-green-500 text-white p-3 rounded-full mr-4">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold text-green-700">Quick WhatsApp Support</h3>
+                            </div>
+                            <p class="text-green-600 mb-4">Get instant support via WhatsApp for urgent queries.</p>
+                            <a href="https://wa.me/+27725479023" target="_blank" class="bg-green-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors duration-300 inline-block">Chat on WhatsApp</a>
+                        </div>
+                        
+                        <!-- Google Maps -->
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Quote Form Modal -->
+    <div id="quoteModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg max-w-md w-full p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold">Request Quote</h3>
+                    <button onclick="closeModal('quoteModal')" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <form onsubmit="submitQuoteForm(event)">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Name *</label>
+                            <input type="text" name="name" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                            <input type="email" name="email" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                            <input type="tel" name="phone" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Project Details *</label>
+                            <textarea name="details" rows="4" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Describe your project requirements..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary text-white py-2 px-4 rounded-md font-semibold hover:bg-blue-700 transition-colors">Submit Quote Request</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Form Modal -->
+    <div id="bookingModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg max-w-md w-full p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold">Book Repair Service</h3>
+                    <button onclick="closeModal('bookingModal')" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <form onsubmit="submitBookingForm(event)">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Name *</label>
+                            <input type="text" name="name" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                            <input type="email" name="email" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Phone *</label>
+                            <input type="tel" name="phone" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Device Type *</label>
+                            <select name="device" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="">Select device type</option>
+                                <option value="laptop">Laptop</option>
+                                <option value="smartphone">Smartphone</option>
+                                <option value="tablet">Tablet</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Issue Description *</label>
+                            <textarea name="issue" rows="3" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Describe the issue with your device..."></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Preferred Date</label>
+                            <input type="date" name="date" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <button type="submit" class="w-full bg-primary text-white py-2 px-4 rounded-md font-semibold hover:bg-blue-700 transition-colors">Book Repair</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Interest Modal -->
+    <div id="productModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg max-w-md w-full p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold">Product Interest</h3>
+                    <button onclick="closeModal('productModal')" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <form onsubmit="submitProductInterest(event)">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Name *</label>
+                            <input type="text" name="name" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                            <input type="email" name="email" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Phone *</label>
+                            <input type="tel" name="phone" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Product Category</label>
+                            <input type="text" id="productCategory" name="category" readonly class="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Budget Range</label>
+                            <select name="budget" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="">Select budget range</option>
+                                <option value="under-5k">Under R5,000</option>
+                                <option value="5k-10k">R5,000 - R10,000</option>
+                                <option value="10k-20k">R10,000 - R20,000</option>
+                                <option value="over-20k">Over R20,000</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Additional Requirements</label>
+                            <textarea name="requirements" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Any specific requirements or questions?"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary text-white py-2 px-4 rounded-md font-semibold hover:bg-blue-700 transition-colors">Submit Interest</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Khumtech</h3>
+                    <p class="text-gray-300 mb-4">Your trusted partner for software development, device repairs, and tech solutions.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-blue-500 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-blue-500 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.566-1.35 2.14-2.21-.77.34-1.6.57-2.46.68z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-blue-500 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#services" onclick="showPage('services')" class="text-gray-300 hover:text-blue-500 transition-colors cursor-pointer">Software Development</a></li>
+                        <li><a href="#services" onclick="showPage('services')" class="text-gray-300 hover:text-blue-500 transition-colors cursor-pointer">Device Repairs</a></li>
+                        <li><a href="#services" onclick="showPage('services')" class="text-gray-300 hover:text-blue-500 transition-colors cursor-pointer">Device Sales</a></li>
+                        <li><a href="#contact" onclick="showPage('contact')" class="text-gray-300 hover:text-blue-500 transition-colors cursor-pointer">Consultation</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" onclick="showPage('about')" class="text-gray-300 hover:text-blue-500 transition-colors cursor-pointer">About Us</a></li>
+                        <li><a href="#blog" onclick="showPage('blog')" class="text-gray-300 hover:text-blue-500 transition-colors cursor-pointer">Blog</a></li>
+                        <li><a href="#contact" onclick="showPage('contact')" class="text-gray-300 hover:text-blue-500 transition-colors cursor-pointer">Contact</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-blue-500 transition-colors">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="tel:+27725479023" class="hover:text-blue-500">+27 72 547 9023</a></li>
+                        <li><a href="mailto:khumtech951@gmail.com" class="hover:text-blue-500">khumtech951@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-300">&copy; 2025 Khumtech. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-300 hover:text-blue-500 transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-gray-300 hover:text-blue-500 transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Global state
+        let currentPage = 'home';
+        
+        // Page navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.add('hidden');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.remove('hidden');
+            
+            // Update navigation
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('text-primary', 'font-bold');
+                link.classList.add('text-secondary');
+            });
+            
+            // Highlight active nav link
+            const activeLink = document.querySelector(`[onclick="showPage('${pageId}')"]`);
+            if (activeLink) {
+                activeLink.classList.remove('text-secondary');
+                activeLink.classList.add('text-primary', 'font-bold');
+            }
+            
+            currentPage = pageId;
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+        
+        // Modal functions
+        function showQuoteForm(serviceType) {
+            document.getElementById('quoteModal').classList.remove('hidden');
+        }
+        
+        function showBookingForm() {
+            document.getElementById('bookingModal').classList.remove('hidden');
+        }
+        
+        function showProductInterest(productType) {
+            document.getElementById('productCategory').value = productType.replace('-', ' ');
+            document.getElementById('productModal').classList.remove('hidden');
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+        
+        // Form submissions
+       /* function submitContactForm(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // Simulate form submission
+            alert('Thank you for your message! We will get back to you within 24 hours.');
+            event.target.reset();
+        }*/
+         async function submitContactForm(event) {
+    event.preventDefault();
+
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('contactFormSubmit');
+    const statusEl = document.getElementById('contact-form-status');
+
+    // Disable UI while sending
+    submitBtn.disabled = true;
+    submitBtn.classList.add('opacity-60', 'cursor-not-allowed');
+    statusEl.textContent = 'Sending…';
+
+    try {
+      const formData = new FormData(form);
+
+      // Use fetch to send to Formspree endpoint
+      const resp = await fetch(form.action, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json'
+          // NOTE: Do NOT set Content-Type when sending FormData
+        },
+        body: formData
+      });
+
+      if (resp.ok) {
+        const data = await resp.json().catch(() => ({}));
+        // Success - show friendly message and reset form
+        statusEl.className = 'text-sm text-green-600';
+        statusEl.textContent = 'Thanks — your message has been sent. We will get back to you shortly.';
+        form.reset();
+
+        // Optional: after success, you can redirect or close modal
+        // setTimeout(() => window.location.href = '/thank-you.html', 1500);
+      } else {
+        // Non-2xx response from Formspree
+        const error = await resp.json().catch(() => null);
+        console.error('Formspree error', resp.status, error);
+        statusEl.className = 'text-sm text-red-600';
+        statusEl.textContent = (error && error.error) ? error.error : 'There was a problem sending your message. Please try again later.';
+      }
+    } catch (err) {
+      console.error('Network error', err);
+      statusEl.className = 'text-sm text-red-600';
+      statusEl.textContent = 'Network error — please check your connection and try again.';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('opacity-60', 'cursor-not-allowed');
+    }
+  }
+        
+        function submitQuoteForm(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            alert('Quote request submitted successfully! We will contact you within 24 hours with a detailed quote.');
+            event.target.reset();
+            closeModal('quoteModal');
+        }
+        
+        function submitBookingForm(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            alert('Repair booking submitted successfully! We will contact you to confirm the appointment.');
+            event.target.reset();
+            closeModal('bookingModal');
+        }
+        
+        function submitProductInterest(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            alert('Product interest submitted! Our sales team will contact you with more information.');
+            event.target.reset();
+            closeModal('productModal');
+        }
+        
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            
+            alert('Thank you for subscribing to our newsletter!');
+            event.target.reset();
+        }
+        
+        // Close modals when clicking outside
+        window.addEventListener('click', function(event) {
+            const modals = ['quoteModal', 'bookingModal', 'productModal'];
+            modals.forEach(modalId => {
+                const modal = document.getElementById(modalId);
+                if (event.target === modal) {
+                    closeModal(modalId);
+                }
+            });
+        });
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            showPage('home');
+            
+            // Add scroll effects
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('nav');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('shadow-xl');
+                } else {
+                    navbar.classList.remove('shadow-xl');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
